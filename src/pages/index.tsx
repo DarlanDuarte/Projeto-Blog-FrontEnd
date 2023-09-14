@@ -18,7 +18,7 @@ export default function Home() {
           <Posts />
         </main>
 
-        <div className={`w-2/12 h-[91.35vh]   bg-[#fbfcfd] p-5 shadow-3xl`}>
+        <div className={`w-2/12 h-[92vh]   bg-[#fbfcfd] p-5 shadow-3xl`}>
           <SideBar />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const Post: React.FC = () => {
+const PostCard: React.FC = () => {
   return (
     <div
       className={` relative  w-[20rem] h-[30rem] bg-[#e0e5e6] mx-5 mt-5 shadow-3xl mb-5 `}
@@ -32,4 +32,4 @@ const Post: React.FC = () => {
   );
 };
 
-export default Post;
+export default PostCard;
