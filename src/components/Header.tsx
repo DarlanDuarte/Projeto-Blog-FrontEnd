@@ -30,7 +30,7 @@ const Header: React.FC = () => {
           <li
             className={`mx-8 text-lg font-semibold cursor-pointer  text-[#455060] hover:border-b-[3px]`}
           >
-            <Link href={"/about"}>NovoPost</Link>
+            <Link href={"/newPost"}>NovoPost</Link>
           </li>
           <li
             className={`mx-8 text-lg font-semibold cursor-pointer  text-[#455060] hover:border-b-[3px]`}

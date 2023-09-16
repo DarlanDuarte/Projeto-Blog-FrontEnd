@@ -18,9 +18,9 @@ export default function Home() {
           <Posts />
         </main>
 
-        <div className={`w-2/12 h-[92vh]   bg-[#fbfcfd] p-5 shadow-3xl`}>
+        <aside className={`w-2/12 h-[92vh]   bg-[#fbfcfd] p-5 shadow-3xl`}>
           <SideBar />
-        </div>
+        </aside>
       </div>
     </section>
   );

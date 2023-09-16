@@ -9,7 +9,7 @@ import {
 
 const SideBar: React.FC = () => {
   return (
-    <aside className={``}>
+    <div className={``}>
       <div className={``}>
         <Image
           src={"/img/blog-background.jpg"}
@@ -60,7 +60,7 @@ const SideBar: React.FC = () => {
           </li>
         </ul>
       </div>
-    </aside>
+    </div>
   );
 };
 

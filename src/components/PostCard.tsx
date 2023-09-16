@@ -1,7 +1,14 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 const PostCard: React.FC = () => {
+  const router = useRouter();
+
+  function handleClick() {
+    router.push("/post");
+  }
+
   return (
     <div
       className={` relative  w-[20rem] h-[30rem] bg-[#e0e5e6] mx-5 mt-5 shadow-3xl mb-5 `}
@@ -24,6 +31,7 @@ const PostCard: React.FC = () => {
         elit.
       </p>
       <button
+        onClick={() => handleClick()}
         className={`absolute bottom-0 w-full px-5 py-2 bg-[#5b627e] text-white text-xl `}
       >
         Continue Lendo
