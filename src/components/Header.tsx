@@ -8,14 +8,15 @@ const Header: React.FC = () => {
     ] h-[8vh] w-screen px-10 shadow-3xl  `}
     >
       <div>
-        <h1
+        <Link
+          href={"/"}
           className={`text-3xl font-semibold text-[#455060] tracking-[-0.15rem] `}
         >
           Blog
           <span className={`text-[#e0e5e6] tracking-[-0.20rem]`}>Pessoal</span>
-        </h1>
+        </Link>
       </div>
-      <div>
+      <nav>
         <ul className={`flex`}>
           <li
             className={`mx-8 text-lg font-semibold cursor-pointer  text-[#455060] hover:border-b-[3px]`}
@@ -43,7 +44,7 @@ const Header: React.FC = () => {
             Logout
           </li>
         </ul>
-      </div>
+      </nav>
     </div>
   );
 };
