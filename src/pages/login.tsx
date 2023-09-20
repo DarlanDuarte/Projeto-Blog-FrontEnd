@@ -2,18 +2,91 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { BiUser, BiLock } from "react-icons/bi";
 import { HiOutlineMail } from "react-icons/hi";
+import { IDataCreateUser, IDataLogin } from "@/interfaces/interface";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const baseURL = `http://localhost:8080`;
+  const router = useRouter();
+
   const [login, setLogin] = useState<"login" | "cadastro">("login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [msgError, setMsgError] = useState<string | null>(null);
+
+  function ExibirError(msg: string, time = 5000) {
+    setMsgError(msg);
+    setTimeout(() => setMsgError(null), time);
+  }
 
   function handleLogin(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     setLogin(login === "login" ? "cadastro" : "login");
     setName("");
     setEmail("");
     setPassword("");
+  }
+
+  async function CreateUser(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${baseURL}/user`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        ExibirError(error);
+        return;
+      }
+
+      const data: IDataCreateUser = await response.json();
+      console.log(data);
+
+      const { msg } = data;
+      console.log(msg);
+
+      setName("");
+      setEmail("");
+      setPassword("");
+      setLogin("login");
+    } catch (e: any) {
+      console.log(`Ocorreu um erro na tentativa de Cadastro`, e.message);
+    }
+  }
+
+  async function Login(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${baseURL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        ExibirError(error);
+        return;
+      }
+
+      const data: IDataLogin = await response.json();
+
+      const { token } = data;
+
+      localStorage.setItem("@token", JSON.stringify(token));
+
+      setEmail("");
+      setPassword("");
+      router.push("/");
+    } catch (e: any) {
+      console.log(`Erro na tentativa de Login`, e.message);
+    }
   }
 
   return (
@@ -61,7 +134,15 @@ const Login = () => {
                   className={`outline-none  p-1 w-full  `}
                 />
               </div>
+              {msgError && (
+                <div
+                  className={` mx-10 mt-5  border-2 border-red-700 bg-red-500 text-white font-bold`}
+                >
+                  {msgError}
+                </div>
+              )}
               <button
+                onClick={(e) => Login(e)}
                 className={`flex justify-center items-center w-36 mt-10 p-1 bg-red-500 text-white mx-auto shadow-xl
                 hover:bg-green-500 duration-700
               `}
@@ -128,7 +209,15 @@ const Login = () => {
                   className={`outline-none  p-1 w-full  `}
                 />
               </div>
+              {msgError && (
+                <div
+                  className={` mx-10 mt-5  border-2 border-red-700 bg-red-500 text-white font-bold text-center`}
+                >
+                  {msgError}
+                </div>
+              )}
               <button
+                onClick={(e) => CreateUser(e)}
                 className={`flex justify-center items-center w-36 mt-10 p-1 bg-red-500 text-white mx-auto shadow-xl
                 hover:bg-green-500 duration-700
               `}
@@ -136,7 +225,7 @@ const Login = () => {
                 Cadastrar
               </button>
             </form>
-            <div className={`mt-32 w-full border-[1px]`}></div>
+            <div className={`mt-20 w-full border-[1px]`}></div>
             <button
               onClick={(e) => handleLogin(e)}
               className={`flex justify-center items-center w-36 mt-10 p-1 bg-white text-black mx-auto border-[2px] border-red-500
