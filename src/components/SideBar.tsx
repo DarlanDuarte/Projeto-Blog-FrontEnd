@@ -38,6 +38,30 @@ const SideBar: React.FC = () => {
           seus sonhos
         </p>
       </div>
+      <div className={``}>
+        <Image
+          src={"/img/avatar.png"}
+          alt="image"
+          width={400}
+          height={400}
+          className={`w-[22rem] mx-auto mt-1 `}
+          style={{ objectFit: "contain" }}
+        />
+      </div>
+      <div>
+        <h2
+          className={`text-center  text-2xl font-semibold border-t-[3px] border-b-[3px] border-slate-400 p-1 mb-2`}
+        >
+          Sobre
+        </h2>
+        <p className="text-justify px-2 font-medium">
+          Sou apaixonado por tecnologia e desenvolvimento de software. Estou no
+          início da minha carreira como desenvolvedor e estou em busca da minha
+          primeira oportunidade de emprego na área. Fui cativado pelo mundo da
+          programação e das soluções tecnológicas que podem transformar ideias
+          em realidade.
+        </p>
+      </div>
 
       <div>
         <h2

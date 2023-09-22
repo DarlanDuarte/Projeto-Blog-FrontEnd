@@ -79,7 +79,7 @@ const Login = () => {
 
       const { token } = data;
 
-      localStorage.setItem("@token", JSON.stringify(token));
+      localStorage.setItem("@token", token);
 
       setEmail("");
       setPassword("");

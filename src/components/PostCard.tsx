@@ -2,7 +2,19 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const PostCard: React.FC = () => {
+interface IPostCard {
+  id: number | string;
+  title: string;
+  description: string;
+  createAt: string;
+}
+
+const PostCard: React.FC<IPostCard> = ({
+  id,
+  title,
+  description,
+  createAt,
+}) => {
   const router = useRouter();
 
   function handleClick() {
@@ -18,18 +30,13 @@ const PostCard: React.FC = () => {
         alt="imagePost"
         width={200}
         height={200}
-        className={`w-full h-[35%]`}
+        className={`w-full h-[35%] mb-2`}
       />
-      <h3 className={`mt-4 text-center text-2xl font-semibold text-[#5b627e]`}>
-        Titulo do Post
+      <p className={`text-center font-medium text-gray-400`}>{createAt}</p>
+      <h3 className={` text-center text-2xl font-semibold text-[#5b627e] z-10`}>
+        {title.substring(0, 50)}
       </h3>
-      <p className={`mt-4 text-center`}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nemo autem
-        quod adipisci, tempore asperiores itaque harum facere quidem
-        necessitatibus veritatis odio eveniet repellendus hic dicta fugiat,
-        commodi sint sed! Lorem ipsum dolor sit amet consectetur, adipisicing
-        elit.
-      </p>
+      <p className={`mt-2 text-center`}>{description.substring(0, 150)}</p>
       <button
         onClick={() => handleClick()}
         className={`absolute bottom-0 w-full px-5 py-2 bg-[#5b627e] text-white text-xl `}

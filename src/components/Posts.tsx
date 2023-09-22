@@ -1,12 +1,35 @@
 import React, { useState, useEffect } from "react";
 import PostCard from "./PostCard";
+import { IPostDataArray } from "@/interfaces/interface";
 
 const Posts: React.FC = () => {
-  const post = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [posts, setPosts] = useState<IPostDataArray[]>([]);
+  const baseURL = `http://localhost:8080`;
 
   useEffect(() => {
     async function getPosts() {
-      const baseURL = `http://localhost:8080`;
+      try {
+        const response = await fetch(`${baseURL}/posts`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          console.log(response.json());
+          return;
+        }
+
+        const data = await response.json();
+
+        const postArray: IPostDataArray[] = Object.values(data);
+        console.log(postArray);
+
+        setPosts(postArray);
+      } catch (e: any) {
+        console.log(`Error ao tentar pegar os Posts`, e.message);
+      }
     }
 
     getPosts();
@@ -14,8 +37,14 @@ const Posts: React.FC = () => {
 
   return (
     <div className={`grid grid-cols-4 `}>
-      {post.map((value, index) => (
-        <PostCard key={index} />
+      {posts.map((value, index) => (
+        <PostCard
+          key={value.id}
+          id={value.id}
+          title={value.title}
+          description={value.description}
+          createAt={value.createAt}
+        />
       ))}
     </div>
   );

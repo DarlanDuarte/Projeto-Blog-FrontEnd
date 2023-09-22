@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import React, { useState, useEffect } from "react";
 import Loading from "@/components/Loading/Loading";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

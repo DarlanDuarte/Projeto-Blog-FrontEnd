@@ -13,3 +13,11 @@ export interface IDataLogin {
   token: string;
   user: string;
 }
+
+export interface IPostDataArray {
+  id: number | string;
+  title: string;
+  description: string;
+  createAt: string;
+  userId: number | string;
+}
