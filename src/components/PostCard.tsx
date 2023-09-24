@@ -18,7 +18,7 @@ const PostCard: React.FC<IPostCard> = ({
   const router = useRouter();
 
   function handleClick() {
-    router.push("/post");
+    router.push(`/posts/${id}`);
   }
 
   return (

@@ -14,13 +14,8 @@ export default function Home() {
       </header>
 
       <div className={`flex`}>
-        <main className={`w-full`}>
-          <Posts />
-        </main>
-
-        <aside className={`w-2/12 h-full mr-4   bg-[#fbfcfd] p-5 shadow-3xl`}>
-          <SideBar />
-        </aside>
+        <Posts />
+        <SideBar />
       </div>
     </section>
   );
