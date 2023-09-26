@@ -7,7 +7,7 @@ import TextArea from "@/components/TextArea";
 const NewPost: React.FC = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState("");
-  const [imagem, setImagem] = useState<File | null>(null);
+  const [image, setImage] = useState<File | null>(null);
   const [msgError, setMsgError] = useState<string | null>(null);
 
   const router = useRouter();
@@ -17,16 +17,23 @@ const NewPost: React.FC = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     e.preventDefault();
+
     try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      if (image) {
+        formData.append("image", image);
+      }
+
       const token = localStorage.getItem("@token");
-      console.log(title, description, token);
+      console.log(title, description, token, image);
       const response = await fetch(`http://localhost:8080/posts`, {
         method: "POST",
         headers: {
           authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, description }),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -57,7 +64,10 @@ const NewPost: React.FC = () => {
     <div className={`w-screen h-screen overflow-hidden bg-[#bec9ca]`}>
       <Header />
       <main className={`flex justify-center mt-10 w-full h-full `}>
-        <form className={`w-3/5 h-[75%] bg-[#fbfcfd] rounded-xl`}>
+        <form
+          encType="multipart/form-data"
+          className={`w-3/5 h-[75%] bg-[#fbfcfd] rounded-xl`}
+        >
           <h1 className={`text-center mt-10 mb-12 text-4xl font-bold`}>
             Novo Post
           </h1>
@@ -101,7 +111,7 @@ const NewPost: React.FC = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const file = e.target.files?.[0];
                 if (file) {
-                  setImagem(file);
+                  setImage(file);
                 }
               }}
             />

@@ -46,8 +46,10 @@ export const getServerSideProps: GetServerSideProps = async (
 };
 
 const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
+  const baseURL = `http://localhost:8080`;
+
   return (
-    <div className={`bg-[#bec9ca]`}>
+    <div className={`bg-[#bec9ca] pb-52`}>
       <header className={`sticky top-0 z-50`}>
         <Header />
       </header>
@@ -55,7 +57,11 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
         <div className={`w-full mx-32 mt-10 `}>
           <div>
             <Image
-              src={"/img/background.jpg"}
+              src={
+                data.image !== null
+                  ? `${baseURL}/${data.image}`
+                  : `/img/background.jpg`
+              }
               alt="Imagem do Post"
               width={500}
               height={500}
@@ -66,9 +72,10 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
             <h2 className={`text-center text-4xl font-bold pt-8`}>
               {data.title}
             </h2>
-            <p className={`text-xl text-justify px-8 mt-10`}>
-              {data.description}
-            </p>
+            <div
+              className={`text-xl text-justify px-8 mt-10`}
+              dangerouslySetInnerHTML={{ __html: data.description }}
+            ></div>
           </div>
         </div>
         <SideBar />

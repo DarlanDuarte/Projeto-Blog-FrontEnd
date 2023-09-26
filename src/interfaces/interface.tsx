@@ -20,4 +20,5 @@ export interface IPostDataArray {
   description: string;
   createAt: string;
   userId: number | string;
+  image: string | null;
 }

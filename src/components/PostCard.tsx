@@ -7,6 +7,7 @@ interface IPostCard {
   title: string;
   description: string;
   createAt: string;
+  url: string | null;
 }
 
 const PostCard: React.FC<IPostCard> = ({
@@ -14,6 +15,7 @@ const PostCard: React.FC<IPostCard> = ({
   title,
   description,
   createAt,
+  url,
 }) => {
   const router = useRouter();
 
@@ -21,12 +23,15 @@ const PostCard: React.FC<IPostCard> = ({
     router.push(`/posts/${id}`);
   }
 
+  const baseURL = `http://localhost:8080`;
+  console.log(url);
+
   return (
     <div
       className={` relative  w-[20rem] h-[30rem] bg-[#e0e5e6] mx-5 mt-5 shadow-3xl mb-5 `}
     >
       <Image
-        src={"/img/blog-background3.jpg"}
+        src={url !== null ? `${baseURL}/${url}` : `/img/blog-background3.jpg`}
         alt="imagePost"
         width={200}
         height={200}

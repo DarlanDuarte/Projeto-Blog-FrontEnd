@@ -31,7 +31,6 @@ const Posts: React.FC = () => {
         const data = await response.json();
 
         const postArray: IPostDataArray[] = Object.values(data);
-        console.log(postArray);
 
         setPosts(postArray.reverse());
       } catch (e: any) {
@@ -62,6 +61,7 @@ const Posts: React.FC = () => {
             title={value.title}
             description={value.description}
             createAt={value.createAt}
+            url={value.image}
           />
         ))}
       </div>
@@ -69,7 +69,7 @@ const Posts: React.FC = () => {
         <button
           onClick={() => paginate(false)}
           disabled={currentPage <= 1}
-          className={`ml-6 ${
+          className={`ml-5  bg-slate-200 p-1 ${
             currentPage <= 1 ? `cursor-not-allowed` : `cursor-pointer`
           }`}
         >
@@ -78,11 +78,11 @@ const Posts: React.FC = () => {
         <button
           onClick={() => paginate(true)}
           disabled={pagina.length < paginaPorPost}
-          className={`mr-[5.2rem] ${
+          className={`mr-[3.8rem] ${
             pagina.length < paginaPorPost
               ? "cursor-not-allowed"
               : "cursor-pointer"
-          }`}
+          }  bg-slate-200 p-1 `}
         >
           <TbPlayerTrackNextFilled size={30} color={"#555"} />
         </button>

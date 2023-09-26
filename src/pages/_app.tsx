@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Loading from "@/components/Loading/Loading";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { NovoProvider } from "@/context/NovoContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -38,5 +39,13 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, [router]);
 
-  return loading ? <Loading /> : <Component {...pageProps} />;
+  return loading ? (
+    <Loading />
+  ) : (
+    <>
+      <NovoProvider>
+        <Component {...pageProps} />
+      </NovoProvider>
+    </>
+  );
 }
