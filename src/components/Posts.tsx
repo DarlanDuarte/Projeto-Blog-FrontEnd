@@ -78,7 +78,7 @@ const Posts: React.FC = () => {
         <button
           onClick={() => paginate(true)}
           disabled={pagina.length < paginaPorPost}
-          className={`mr-[3.8rem] ${
+          className={`mr-[1.5rem] ${
             pagina.length < paginaPorPost
               ? "cursor-not-allowed"
               : "cursor-pointer"

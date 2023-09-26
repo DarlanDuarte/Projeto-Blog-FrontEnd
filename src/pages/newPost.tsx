@@ -89,14 +89,10 @@ const NewPost: React.FC = () => {
             />
           </fieldset>
           <div className={`flex flex-col mx-6 mt-4 mb-8 h-60 overflow-auto`}>
-            <textarea
-              className={`outline-none border-2 p-1`}
-              name="description"
-              cols={30}
-              rows={10}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
+            <TextArea
+              description={description}
+              setDescription={setDescription}
+            />
           </div>
 
           <div className="flex flex-col mx-6 mt-4">

@@ -68,7 +68,7 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
               className={`w-screen h-[32rem]  object-fill`}
             />
           </div>
-          <div className={`bg-[#f2f2f2]  pb-10`}>
+          <div className={`bg-[#fff]  pb-10`}>
             <h2 className={`text-center text-4xl font-bold pt-8`}>
               {data.title}
             </h2>

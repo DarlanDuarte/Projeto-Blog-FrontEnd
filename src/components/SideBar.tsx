@@ -64,7 +64,7 @@ const SideBar: React.FC = () => {
           </p>
         </div>
 
-        <div>
+        <div className={`pb-[5.2rem]`}>
           <h2
             className={`text-center mt-8 text-2xl font-semibold border-t-[3px] border-b-[3px] border-slate-400 p-1`}
           >
