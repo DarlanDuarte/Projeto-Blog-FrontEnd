@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import TextArea from "@/components/TextArea";
+import { toast } from "react-toastify";
 
 const NewPost: React.FC = () => {
   const [title, setTitle] = useState<string>("");
@@ -11,7 +12,6 @@ const NewPost: React.FC = () => {
   const [msgError, setMsgError] = useState<string | null>(null);
 
   const router = useRouter();
-  const baseURL = `http://localhost:8080`;
 
   async function handleNewPost(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -38,16 +38,17 @@ const NewPost: React.FC = () => {
 
       if (!response.ok) {
         const { error }: any = await response.json();
-
         ExibirError(error);
         return;
       }
 
       const data = await response.json();
-      console.log(data);
+      const { msg } = data;
 
       setTitle("");
       setDescription("");
+      toast.success(msg);
+
       router.push("/");
     } catch (e: any) {
       console.log(`Error ao tentar criar um Post Novo!`, e.message);
