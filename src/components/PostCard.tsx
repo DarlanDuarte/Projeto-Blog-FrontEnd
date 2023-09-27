@@ -1,13 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { IPostCard } from "@/interfaces/interface";
 
-interface IPostCard {
-  id: number | string;
-  title: string;
-  description: string;
-  createAt: string;
-  url: string | null;
+function removeHtmlTags(input: string) {
+  return input.replace(/<[^>]+>/g, "");
 }
 
 const PostCard: React.FC<IPostCard> = ({
@@ -24,7 +21,8 @@ const PostCard: React.FC<IPostCard> = ({
   }
 
   const baseURL = `http://localhost:8080`;
-  console.log(url);
+
+  const clearDescription = removeHtmlTags(description);
 
   return (
     <div
@@ -36,12 +34,16 @@ const PostCard: React.FC<IPostCard> = ({
         width={200}
         height={200}
         className={`w-full h-[35%] mb-2`}
+        priority={true}
+        quality={25}
       />
       <p className={`text-center font-medium text-gray-400`}>{createAt}</p>
       <h3 className={` text-center text-2xl font-semibold text-[#5b627e] z-10`}>
         {title.substring(0, 50)}
       </h3>
-      <p className={`mt-2 text-center`}>{description.substring(0, 150)}</p>
+      <div className={`mt-2 text-center`}>
+        {clearDescription.substring(0, 150)}
+      </div>
       <button
         onClick={() => handleClick()}
         className={`absolute bottom-0 w-full px-5 py-2 bg-[#5b627e] text-white text-xl `}

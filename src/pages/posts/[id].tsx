@@ -30,7 +30,6 @@ export const getServerSideProps: GetServerSideProps = async (
     }
 
     const data: IPostDataArray = await response.json();
-    console.log(data);
 
     return {
       props: {
@@ -66,6 +65,7 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
               width={500}
               height={500}
               className={`w-screen h-[32rem]  object-fill`}
+              priority={true}
             />
           </div>
           <div className={`bg-[#fff]  pb-10`}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PostCard from "./PostCard";
 import { IPostDataArray } from "@/interfaces/interface";
 import {
@@ -6,12 +6,13 @@ import {
   TbPlayerTrackNextFilled,
 } from "react-icons/tb";
 import { Piazzolla } from "next/font/google";
+import { CreateContext } from "@/context/NovoContext";
 
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<IPostDataArray[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const paginaPorPost: number = 12;
-  const baseURL = `http://localhost:8080`;
+  const { baseURL } = useContext(CreateContext);
 
   useEffect(() => {
     async function getPosts() {

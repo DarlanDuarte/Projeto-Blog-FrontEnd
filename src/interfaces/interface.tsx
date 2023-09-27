@@ -22,3 +22,11 @@ export interface IPostDataArray {
   userId: number | string;
   image: string | null;
 }
+
+export interface IPostCard {
+  id: number | string;
+  title: string;
+  description: string;
+  createAt: string;
+  url: string | null;
+}
