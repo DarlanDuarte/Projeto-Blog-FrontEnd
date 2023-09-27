@@ -36,9 +36,7 @@ const Painel = () => {
     };
 
     getPostUser();
-  }, []);
-
-  console.log(token);
+  }, [posts]);
 
   return (
     <div className={` w-screen h-screen`}>

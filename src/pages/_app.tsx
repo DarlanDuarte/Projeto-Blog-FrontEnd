@@ -5,6 +5,8 @@ import Loading from "@/components/Loading/Loading";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { NovoProvider } from "@/context/NovoContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -44,6 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
   ) : (
     <>
       <NovoProvider>
+        <ToastContainer autoClose={3000} />
         <Component {...pageProps} />
       </NovoProvider>
     </>

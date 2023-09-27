@@ -1,6 +1,7 @@
 import { CreateContext } from "@/context/NovoContext";
 import { DeletePostUser } from "@/functions/deletePost";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { LiaEdit } from "react-icons/lia";
@@ -16,8 +17,17 @@ const Table = ({
   description: string;
   url: string | null;
 }) => {
+  const router = useRouter();
+
   function removeHtmlTags(input: string) {
     return input.replace(/<[^>]+>/g, "");
+  }
+
+  async function handleEdit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number | string
+  ) {
+    router.push(`http://localhost:3000/editPost/${id}?id=${id}`);
   }
 
   const clearDescription = removeHtmlTags(description);
@@ -44,7 +54,7 @@ const Table = ({
         {clearDescription.substring(0, 100)}
       </td>
       <td className={`flex justify-center mt-8`}>
-        <button className={`mx-2`}>
+        <button onClick={(e) => handleEdit(e, id)} className={`mx-2`}>
           <LiaEdit size={28} color={"#5a9d2d"} />
         </button>
         <button

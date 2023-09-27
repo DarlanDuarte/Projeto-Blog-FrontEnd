@@ -1,13 +1,14 @@
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
 } from "next";
 import { IPostDataArray } from "@/interfaces/interface";
+import { CreateContext } from "@/context/NovoContext";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -19,9 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
-
-    console.log(response);
-    console.log(id);
 
     if (!response.ok) {
       return {
@@ -45,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (
 };
 
 const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
-  const baseURL = `http://localhost:8080`;
+  const { baseURL, token } = useContext(CreateContext);
 
   return (
     <div className={`bg-[#bec9ca] pb-52`}>

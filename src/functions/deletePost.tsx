@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export async function DeletePostUser(
   event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   id: number | string,
@@ -19,9 +21,7 @@ export async function DeletePostUser(
 
     const data = await response.json();
 
-    return {
-      data,
-    };
+    toast.success(data.sucess);
   } catch (e: any) {
     console.log(e.message);
   }
