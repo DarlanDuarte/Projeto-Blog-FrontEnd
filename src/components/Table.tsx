@@ -1,27 +1,33 @@
 import { CreateContext } from "@/context/NovoContext";
-import { DeletePostUser } from "@/functions/deletePost";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { LiaEdit } from "react-icons/lia";
+import { toast } from "react-toastify";
+import { IPostDataArray } from "@/interfaces/interface";
 
 const Table = ({
   id,
   title,
   description,
   url,
+  setPost,
 }: {
   id: number | string;
   title: string;
   description: string;
   url: string | null;
+  setPost: React.Dispatch<React.SetStateAction<IPostDataArray[]>>;
 }) => {
   const router = useRouter();
 
   function removeHtmlTags(input: string) {
     return input.replace(/<[^>]+>/g, "");
   }
+  const clearDescription = removeHtmlTags(description);
+
+  const { baseURL, token } = useContext(CreateContext);
 
   async function handleEdit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -30,9 +36,37 @@ const Table = ({
     router.push(`http://localhost:3000/editPost/${id}?id=${id}`);
   }
 
-  const clearDescription = removeHtmlTags(description);
+  function removePost(id: number | string) {
+    setPost((prevPost) => prevPost.filter((post) => post.id !== id));
+  }
 
-  const { baseURL, token } = useContext(CreateContext);
+  async function DeletePostUser(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number | string,
+    token: string | null,
+    baseURL: string
+  ) {
+    try {
+      const response = await fetch(`${baseURL}/posts/${id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        console.log(response);
+        return;
+      }
+
+      const data = await response.json();
+
+      removePost(id);
+      toast.success(data.sucess);
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  }
 
   return (
     <tr className={`border-2 `}>

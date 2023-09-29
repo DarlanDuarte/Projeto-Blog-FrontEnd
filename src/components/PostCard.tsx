@@ -17,7 +17,7 @@ const PostCard: React.FC<IPostCard> = ({
   const router = useRouter();
 
   function handleClick() {
-    router.push(`/posts/${id}`);
+    router.push(`/posts/${id}?id=${id}`);
   }
 
   const baseURL = `http://localhost:8080`;

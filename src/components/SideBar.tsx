@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import {
   BsPersonWorkspace,
@@ -72,10 +73,14 @@ const SideBar: React.FC = () => {
           </h2>
           <ul className={`flex justify-center items-center mt-8`}>
             <li className={`mx-5`}>
-              <BsPersonWorkspace size={32} color={"#93a7a6"} />
+              <Link href={"/"}>
+                <BsPersonWorkspace size={32} color={"#93a7a6"} />
+              </Link>
             </li>
             <li className={`mx-5`}>
-              <BsGithub size={32} color={"#93a7a6"} />
+              <Link href={"https://github.com/DarlanDuarte"} target="_blank">
+                <BsGithub size={32} color={"#93a7a6"} />
+              </Link>
             </li>
             <li className={`mx-5`}>
               <BsLinkedin size={32} color={"#93a7a6"} />

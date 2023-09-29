@@ -30,3 +30,11 @@ export interface IPostCard {
   createAt: string;
   url: string | null;
 }
+
+export interface ICommentPost {
+  id: number | string;
+  comment: string;
+  postId: number | string;
+  userId: number | string;
+  usuario: string;
+}

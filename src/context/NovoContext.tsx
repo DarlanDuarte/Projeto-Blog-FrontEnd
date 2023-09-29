@@ -13,20 +13,12 @@ export const NovoProvider = ({ children }: any) => {
   const router = useRouter();
   const baseURL = `http://localhost:8080`;
 
-  const [token, setToken] = useState<string | null>("");
+  const token = localStorage.getItem("@token");
 
   async function Logout() {
     localStorage.removeItem("@token");
     router.reload();
   }
-
-  useEffect(() => {
-    const getToken = () => {
-      const getToken = localStorage.getItem("@token");
-      setToken(getToken);
-    };
-    getToken();
-  }, []);
 
   return (
     <CreateContext.Provider value={{ Logout, token, baseURL }}>

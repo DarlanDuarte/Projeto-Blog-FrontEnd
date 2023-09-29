@@ -6,7 +6,7 @@ import { CreateContext } from "@/context/NovoContext";
 import { IPostDataArray } from "@/interfaces/interface";
 
 const Painel = () => {
-  const { token, baseURL } = useContext(CreateContext);
+  const { baseURL, token } = useContext(CreateContext);
   const [posts, setPosts] = useState<IPostDataArray[]>([]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Painel = () => {
     };
 
     getPostUser();
-  }, [posts]);
+  }, []);
 
   return (
     <div className={` w-screen h-screen`}>
@@ -66,6 +66,7 @@ const Painel = () => {
                   title={value.title}
                   description={value.description}
                   url={value.image}
+                  setPost={setPosts}
                 />
               ))}
             </tbody>
