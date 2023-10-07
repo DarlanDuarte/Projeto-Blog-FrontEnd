@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { IPostCard } from "@/interfaces/interface";
+import { CreateContext } from "@/context/NovoContext";
 
 function removeHtmlTags(input: string) {
   return input.replace(/<[^>]+>/g, "");
@@ -15,21 +16,22 @@ const PostCard: React.FC<IPostCard> = ({
   url,
 }) => {
   const router = useRouter();
+  const { baseURL } = useContext(CreateContext);
 
   function handleClick() {
     router.push(`/posts/${id}?id=${id}`);
   }
 
-  const baseURL = `http://localhost:8080`;
-
   const clearDescription = removeHtmlTags(description);
+
+  /* /img/blog-background3.jpg */
 
   return (
     <div
       className={` relative  w-[20rem] h-[30rem] bg-[#e0e5e6] mx-5 mt-5 shadow-3xl mb-5 `}
     >
       <Image
-        src={url !== null ? `${baseURL}/${url}` : `/img/blog-background3.jpg`}
+        src={`${url}`}
         alt="imagePost"
         width={200}
         height={200}

@@ -11,13 +11,13 @@ const Table = ({
   id,
   title,
   description,
-  url,
+
   setPost,
 }: {
   id: number | string;
   title: string;
   description: string;
-  url: string | null;
+
   setPost: React.Dispatch<React.SetStateAction<IPostDataArray[]>>;
 }) => {
   const router = useRouter();
@@ -71,16 +71,7 @@ const Table = ({
   return (
     <tr className={`border-2 `}>
       <td className={`text-center p-2 border-[1px]`}> {id} </td>
-      <td className={` p-2 border-[1px]`}>
-        <Image
-          src={`${url !== null ? `${baseURL}/${url}` : `/img/background.jpg`}`}
-          width={120}
-          height={120}
-          alt="image"
-          className={`object-contain w-full mx-auto`}
-          priority={true}
-        />
-      </td>
+
       <td className={`text-center p-2 border-[1px]`}>
         {title.substring(0, 40)}
       </td>

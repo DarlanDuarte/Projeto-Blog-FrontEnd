@@ -52,7 +52,6 @@ const Painel = () => {
             <thead className={` border-[3px] border-slate-300`}>
               <tr>
                 <th>Id</th>
-                <th>Image</th>
                 <th>title</th>
                 <th>description</th>
                 <th>actions</th>
@@ -65,7 +64,6 @@ const Painel = () => {
                   id={value.id}
                   title={value.title}
                   description={value.description}
-                  url={value.image}
                   setPost={setPosts}
                 />
               ))}

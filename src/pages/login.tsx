@@ -1,12 +1,13 @@
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BiUser, BiLock } from "react-icons/bi";
 import { HiOutlineMail } from "react-icons/hi";
 import { IDataCreateUser, IDataLogin } from "@/interfaces/interface";
 import { useRouter } from "next/router";
+import { CreateContext } from "@/context/NovoContext";
 
 const Login = () => {
-  const baseURL = `http://localhost:8080`;
+  const { baseURL } = useContext(CreateContext);
   const router = useRouter();
 
   const [login, setLogin] = useState<"login" | "cadastro">("login");

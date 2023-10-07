@@ -51,6 +51,7 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
   const [openComment, setOpenComment] = useState<boolean>(false);
   const [comment, setComment] = useState("");
   const [postComment, setPostComment] = useState<ICommentPost[]>([]);
+  const [image, setImage] = useState<string | null>(data.image);
 
   const { baseURL, token } = useContext(CreateContext);
   const { id } = router.query;
@@ -114,6 +115,11 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
     }
   }
 
+  function handleImageError() {
+    const errorImage = `/img/background.jpg`;
+    setImage(errorImage);
+  }
+
   return (
     <div className={`bg-[#bec9ca] pb-52`}>
       <header className={`sticky top-0 z-50`}>
@@ -123,16 +129,13 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
         <div className={`w-full mx-32 mt-10 `}>
           <div>
             <Image
-              src={
-                data.image !== null
-                  ? `${baseURL}/${data.image}`
-                  : `/img/background.jpg`
-              }
+              src={`${image}`}
               alt="Imagem do Post"
               width={500}
               height={500}
               className={`w-screen h-[32rem]  object-fill`}
               priority={true}
+              onError={handleImageError}
             />
           </div>
           <div className={`bg-[#fff]  pb-10`}>

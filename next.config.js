@@ -2,7 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost"],
+    domains: [
+      "backend-blog-project.cyclic.app",
+      "localhost",
+      "drive.google.com",
+    ],
   },
 };
 

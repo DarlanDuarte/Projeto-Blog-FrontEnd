@@ -1,9 +1,10 @@
 import Header from "@/components/Header";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import TextArea from "@/components/TextArea";
 import { toast } from "react-toastify";
+import { CreateContext } from "@/context/NovoContext";
 
 const NewPost: React.FC = () => {
   const [title, setTitle] = useState<string>("");
@@ -12,6 +13,8 @@ const NewPost: React.FC = () => {
   const [msgError, setMsgError] = useState<string | null>(null);
 
   const router = useRouter();
+
+  const { baseURL, token } = useContext(CreateContext);
 
   async function handleNewPost(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -26,9 +29,10 @@ const NewPost: React.FC = () => {
         formData.append("image", image);
       }
 
-      const token = localStorage.getItem("@token");
       console.log(title, description, token, image);
-      const response = await fetch(`http://localhost:8080/posts`, {
+
+      console.log(token);
+      const response = await fetch(`${baseURL}/posts`, {
         method: "POST",
         headers: {
           authorization: `Bearer ${token}`,
@@ -117,8 +121,7 @@ const NewPost: React.FC = () => {
             <div
               className={` bg-red-500 text-center boder-2 border-red-700 font-semibold text-white mx-10 mt-4 p-1 rounded-md`}
             >
-              {" "}
-              {msgError}{" "}
+              {msgError}
             </div>
           )}
           <div className={`flex justify-center items-center mt-10`}>
