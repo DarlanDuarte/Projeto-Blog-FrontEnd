@@ -1,16 +1,17 @@
 import Header from "@/components/Header";
-
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import TextArea from "@/components/TextArea";
 import { toast } from "react-toastify";
 import { CreateContext } from "@/context/NovoContext";
+import LoadingNewPost from "@/components/Loading/LoadingNewPost";
 
 const NewPost: React.FC = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [msgError, setMsgError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -22,6 +23,7 @@ const NewPost: React.FC = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
@@ -51,6 +53,7 @@ const NewPost: React.FC = () => {
 
       setTitle("");
       setDescription("");
+      setLoading(false);
       toast.success(msg);
 
       router.push("/");
@@ -71,7 +74,7 @@ const NewPost: React.FC = () => {
       <main className={`flex justify-center mt-10 w-full h-full `}>
         <form
           encType="multipart/form-data"
-          className={`w-3/5 h-[75%] bg-[#fbfcfd] rounded-xl`}
+          className={`w-3/5 h-fit bg-[#fbfcfd] rounded-xl`}
         >
           <h1 className={`text-center mt-10 mb-12 text-4xl font-bold`}>
             Novo Post
@@ -127,9 +130,13 @@ const NewPost: React.FC = () => {
           <div className={`flex justify-center items-center mt-10`}>
             <button
               onClick={(e) => handleNewPost(e)}
-              className={`text-xl font-bold bg-green-500 w-1/3 h-8 rounded-xl text-white hover:bg-green-700 duration-500 z-10`}
+              className={`text-xl font-bold bg-green-500 w-1/3 h-8 rounded-xl text-white hover:bg-green-700 duration-500 z-10 mb-10`}
             >
-              Criar Post
+              {loading ? (
+                <LoadingNewPost largura={"10px"} tamanho={"10px"} />
+              ) : (
+                `Criar Post`
+              )}
             </button>
           </div>
         </form>

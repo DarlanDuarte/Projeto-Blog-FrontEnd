@@ -42,7 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router]);
 
   return loading ? (
-    <Loading />
+    <Loading largura={"50px"} tamanho={"50px"} />
   ) : (
     <>
       <NovoProvider>

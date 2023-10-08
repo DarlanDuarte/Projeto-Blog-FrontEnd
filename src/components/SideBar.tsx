@@ -10,7 +10,13 @@ import {
 
 const SideBar: React.FC = () => {
   return (
-    <aside className={`w-2/12 h-full    bg-[#fbfcfd] p-5 shadow-3xl`}>
+    <aside
+      className={`w-2/12 h-full    bg-[#fbfcfd] p-5 shadow-3xl
+    
+    md:w-52
+    sm:w-72
+    `}
+    >
       <div className={``}>
         <div className={``}>
           <Image
@@ -28,7 +34,13 @@ const SideBar: React.FC = () => {
           >
             Blog
           </h2>
-          <p className="text-justify px-2 font-medium">
+          <p
+            className="text-justify px-2 font-medium
+          lg:text-left
+          md:text-left
+          sm:text-left
+          "
+          >
             Às vezes, nos sentimos sobrecarregados pelos desafios da vida, e
             nossos sonhos podem parecer distantes. Mas lembre-se de que cada
             amanhecer traz consigo uma oportunidade renovada de avançar em
@@ -56,7 +68,13 @@ const SideBar: React.FC = () => {
           >
             Sobre
           </h2>
-          <p className="text-justify px-2 font-medium">
+          <p
+            className="text-justify px-2 font-medium
+          lg:text-left
+          md:text-left
+          sm:text-left
+          "
+          >
             Sou apaixonado por tecnologia e desenvolvimento de software. Estou
             no início da minha carreira como desenvolvedor e estou em busca da
             minha primeira oportunidade de emprego na área. Fui cativado pelo
@@ -71,21 +89,64 @@ const SideBar: React.FC = () => {
           >
             Contato
           </h2>
-          <ul className={`flex justify-center items-center mt-8`}>
-            <li className={`mx-5`}>
+          <ul
+            className={`flex justify-center items-center mt-8
+            xl:flex-wrap 
+            lg:flex-wrap
+            md:flex-wrap
+            sm:flex-wrap
+          `}
+          >
+            <li
+              className={`mx-5 
+              xl:m-5
+              lg:m-5
+              md:m-5
+              sm:m-5
+            `}
+            >
               <Link href={"/"}>
                 <BsPersonWorkspace size={32} color={"#93a7a6"} />
               </Link>
             </li>
-            <li className={`mx-5`}>
+            <li
+              className={`mx-5
+            xl:m-5
+            lg:m-5
+            md:m-5
+            sm:m-5
+            
+            
+            
+            `}
+            >
               <Link href={"https://github.com/DarlanDuarte"} target="_blank">
                 <BsGithub size={32} color={"#93a7a6"} />
               </Link>
             </li>
-            <li className={`mx-5`}>
+            <li
+              className={`mx-5
+            xl:m-5
+            lg:m-5
+            md:m-5
+            sm:m-5
+            
+            
+            
+            `}
+            >
               <BsLinkedin size={32} color={"#93a7a6"} />
             </li>
-            <li className={`mx-5`}>
+            <li
+              className={`mx-5
+            xl:m-5
+            lg:m-5
+            md:m-5
+            sm:m-5
+            
+            
+            `}
+            >
               <BsWhatsapp size={32} color={"#93a7a6"} />
             </li>
           </ul>

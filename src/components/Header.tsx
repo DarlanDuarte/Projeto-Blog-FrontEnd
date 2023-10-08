@@ -11,7 +11,12 @@ const Header: React.FC = () => {
   return (
     <div
       className={` relative bg-[#93a7a6]
-    ] h-14 w-screen px-10 shadow-3xl  `}
+    ] h-14 w-screen px-10 shadow-3xl  
+    xl:w-full
+    lg:w-full
+
+    
+    `}
     >
       <div>
         <Link

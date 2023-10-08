@@ -1,11 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { IPostCard } from "@/interfaces/interface";
 import { CreateContext } from "@/context/NovoContext";
 
 function removeHtmlTags(input: string) {
-  return input.replace(/<[^>]+>/g, "");
+  //Remove HTML
+  let withoutTags = input.replace(/<[^>]+>/g, "");
+
+  // Remove entidades HTML como &nbsp;
+  withoutTags = withoutTags.replace(/&[^;]+;/g, "");
+
+  return withoutTags;
 }
 
 const PostCard: React.FC<IPostCard> = ({
@@ -17,6 +23,7 @@ const PostCard: React.FC<IPostCard> = ({
 }) => {
   const router = useRouter();
   const { baseURL } = useContext(CreateContext);
+  const [image, setImage] = useState<any>(url);
 
   function handleClick() {
     router.push(`/posts/${id}?id=${id}`);
@@ -24,20 +31,24 @@ const PostCard: React.FC<IPostCard> = ({
 
   const clearDescription = removeHtmlTags(description);
 
-  /* /img/blog-background3.jpg */
+  function handleErrorImage() {
+    const imageError = `/img/background.jpg`;
+    setImage(imageError);
+  }
 
   return (
     <div
       className={` relative  w-[20rem] h-[30rem] bg-[#e0e5e6] mx-5 mt-5 shadow-3xl mb-5 `}
     >
       <Image
-        src={`${url}`}
+        src={`${image}`}
         alt="imagePost"
         width={200}
         height={200}
         className={`w-full h-[35%] mb-2`}
         priority={true}
         quality={25}
+        onError={handleErrorImage}
       />
       <p className={`text-center font-medium text-gray-400`}>{createAt}</p>
       <h3 className={` text-center text-2xl font-semibold text-[#5b627e] z-10`}>

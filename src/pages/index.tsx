@@ -9,7 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <section className={` bg-[#bec9ca] w-screen h-auto `}>
+    <section
+      className={` bg-[#bec9ca] w-screen h-auto 
+      
+    `}
+    >
       <header className={`sticky top-0 z-50`}>
         <Header />
       </header>

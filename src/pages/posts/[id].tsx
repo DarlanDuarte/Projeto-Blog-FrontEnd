@@ -126,7 +126,13 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
         <Header />
       </header>
       <div className={`flex `}>
-        <div className={`w-full mx-32 mt-10 `}>
+        <div
+          className={`w-full mx-32 mt-10 
+        lg:mx-16  
+        md:mx-10
+        sm:mx-4
+        `}
+        >
           <div>
             <Image
               src={`${image}`}
@@ -143,7 +149,11 @@ const Post: React.FC<{ data: IPostDataArray }> = ({ data }) => {
               {data.title}
             </h2>
             <div
-              className={`text-xl text-justify px-8 mt-10`}
+              className={`text-xl text-justify px-8 mt-10
+              md:text-left
+              sm:text-left
+              
+              `}
               dangerouslySetInnerHTML={{ __html: data.description }}
             ></div>
           </div>

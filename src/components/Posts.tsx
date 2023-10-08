@@ -7,11 +7,14 @@ import {
 } from "react-icons/tb";
 import { Piazzolla } from "next/font/google";
 import { CreateContext } from "@/context/NovoContext";
+import type { InferGetStaticPropsType, GetStaticProps } from "next";
+
+export const getStaticProps = async () => {};
 
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<IPostDataArray[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const paginaPorPost: number = 12;
+  const [paginaPorPost, setPaginaPorPost] = useState<number>(12);
   const { baseURL } = useContext(CreateContext);
 
   useEffect(() => {
@@ -54,7 +57,15 @@ const Posts: React.FC = () => {
 
   return (
     <main className={`w-full`}>
-      <div className={`grid grid-cols-4 `}>
+      <div
+        className={`grid 2xl:grid-cols-4 
+        xl:grid-cols-3 
+        lg:grid-cols-2
+        md:grid-cols-2
+        sm:flex sm:flex-wrap sm:justify-center
+      
+      `}
+      >
         {pagina.map((value, index) => (
           <PostCard
             key={value.id}
@@ -83,7 +94,9 @@ const Posts: React.FC = () => {
             pagina.length < paginaPorPost
               ? "cursor-not-allowed"
               : "cursor-pointer"
-          }  bg-slate-200 p-1 `}
+          }  bg-slate-200 p-1 
+              
+          `}
         >
           <TbPlayerTrackNextFilled size={30} color={"#555"} />
         </button>

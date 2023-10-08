@@ -1,6 +1,6 @@
 import styles from "./Loading.module.css";
 
-export default function Loading({
+export default function LoadingNewPost({
   largura,
   tamanho,
 }: {
@@ -8,9 +8,7 @@ export default function Loading({
   tamanho: string | number;
 }) {
   return (
-    <div
-      className={`w-screen h-screen flex justify-center items-center bg-slate-300`}
-    >
+    <div className={`flex justify-center items-center`}>
       <div
         className={styles.loadingSpinner}
         style={{ width: largura, height: tamanho }}
