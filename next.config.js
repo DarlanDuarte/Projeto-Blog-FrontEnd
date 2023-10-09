@@ -2,11 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "backend-blog-project.cyclic.app",
-      "localhost",
-      "drive.google.com",
-    ],
+    domains: ["backend-blog-project.cyclic.app", "drive.google.com"],
     remotePatterns: [
       {
         protocol: "https",

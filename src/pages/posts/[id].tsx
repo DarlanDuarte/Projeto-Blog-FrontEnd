@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<any>> => {
   try {
-    const baseURL = `http://localhost:8080`;
+    const baseURL = `https://backend-blog-project.cyclic.app`;
     const { id } = context.query;
     const response = await fetch(`${baseURL}/posts/${id}`, {
       method: "GET",

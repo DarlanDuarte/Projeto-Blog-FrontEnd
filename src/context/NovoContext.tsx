@@ -11,9 +11,7 @@ export const CreateContext = createContext({} as INovoContext);
 
 export const NovoProvider = ({ children }: any) => {
   const router = useRouter();
-  const baseURL = `http://localhost:8080`;
-
-  /* https://backend-blog-project.cyclic.app */
+  const baseURL = `https://backend-blog-project.cyclic.app`;
 
   const token = localStorage.getItem("@token");
 
