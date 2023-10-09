@@ -33,6 +33,21 @@ const Login = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     e.preventDefault();
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+
+    if (!passwordRegex.test(password)) {
+      ExibirError(
+        `Sua senha deve conter no minimo 6 caracters com letras maiúscula, minúscula e números`,
+        3000
+      );
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      ExibirError(`Digite um email valido!`, 3000);
+      return;
+    }
 
     try {
       const response = await fetch(`${baseURL}/user`, {
