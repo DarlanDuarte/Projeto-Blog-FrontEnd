@@ -5,6 +5,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { IDataCreateUser, IDataLogin } from "@/interfaces/interface";
 import { useRouter } from "next/router";
 import { CreateContext } from "@/context/NovoContext";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const { baseURL } = useContext(CreateContext);
@@ -92,19 +93,38 @@ const Login = () => {
 
   return (
     <div className={` flex w-screen h-screen bg-[#6b7377]`}>
-      <div className="flex">
+      <div
+        className="flex 
+      
+      sm:hidden"
+      >
         <Image
           src={"/img/background.jpg"}
           width={2000}
           height={600}
           alt="Background-Image"
-          className={`w-screen h-screen bg-cover`}
+          className={`w-screen h-screen bg-cover
+          
+          `}
         />
       </div>
       {login === "login" ? (
-        <div className={`relative w-1/3`}>
-          <div
-            className={`absolute mt-[28%] w-96 h-[44rem] -left-48 bg-white shadow-4xl`}
+        <div
+          className={`relative w-1/3 
+        
+        sm:w-full sm:flex sm:justify-center sm:items-center
+        `}
+        >
+          <motion.div
+            key={"login"}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            transition={{ duration: 1 }}
+            className={`absolute mt-[28%] w-96 h-[44rem] -left-48 bg-white shadow-4xl
+            
+            sm:w-[24rem] sm:mt-0  sm:static
+            `}
           >
             <form className={`mt-[15rem]`}>
               <div
@@ -160,12 +180,25 @@ const Login = () => {
             >
               Cadastrar
             </button>
-          </div>
+          </motion.div>
         </div>
       ) : (
-        <div className={`relative w-1/3`}>
-          <div
-            className={`absolute mt-[28%] w-96 h-[44rem] -left-48 bg-white shadow-4xl`}
+        <div
+          className={`relative w-1/3
+        
+        sm:w-full sm:flex sm:justify-center sm:items-center
+        `}
+        >
+          <motion.div
+            key={"cadastro"}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            transition={{ duration: 1 }}
+            className={`absolute mt-[28%] w-96 h-[44rem] -left-48 bg-white shadow-4xl
+            
+            sm:w-[24rem] sm:mt-0  sm:static
+            `}
           >
             <form className={`mt-[15rem]`}>
               <div
@@ -235,7 +268,7 @@ const Login = () => {
             >
               Login
             </button>
-          </div>
+          </motion.div>
         </div>
       )}
     </div>

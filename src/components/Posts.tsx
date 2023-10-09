@@ -5,11 +5,7 @@ import {
   TbPlayerTrackPrevFilled,
   TbPlayerTrackNextFilled,
 } from "react-icons/tb";
-import { Piazzolla } from "next/font/google";
 import { CreateContext } from "@/context/NovoContext";
-import type { InferGetStaticPropsType, GetStaticProps } from "next";
-
-export const getStaticProps = async () => {};
 
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<IPostDataArray[]>([]);

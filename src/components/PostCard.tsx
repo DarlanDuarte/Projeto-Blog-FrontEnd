@@ -25,8 +25,8 @@ const PostCard: React.FC<IPostCard> = ({
   const { baseURL } = useContext(CreateContext);
   const [image, setImage] = useState<any>(url);
 
-  function handleClick() {
-    router.push(`/posts/${id}?id=${id}`);
+  async function handleClick() {
+    await router.push(`/posts/${id}?id=${id}`);
   }
 
   const clearDescription = removeHtmlTags(description);
