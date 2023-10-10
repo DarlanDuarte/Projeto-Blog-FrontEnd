@@ -18,6 +18,7 @@ export default function About() {
                 width={400}
                 height={400}
                 alt="avatar"
+                className={`rounded-full`}
               />
             </div>
             <h3 className={`text-white text-3xl text-center font-semibold`}>

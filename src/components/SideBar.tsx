@@ -20,11 +20,11 @@ const SideBar: React.FC = () => {
       <div className={``}>
         <div className={``}>
           <Image
-            src={"/img/FotoDeDarlan.jpg"}
+            src={"/img/avatar.png"}
             alt="image"
             width={400}
             height={400}
-            className={`w-[22rem] mx-auto mt-1 `}
+            className={`w-[22rem] mx-auto mt-1 rounded-full `}
             style={{ objectFit: "contain" }}
           />
         </div>
@@ -52,13 +52,13 @@ const SideBar: React.FC = () => {
             em direção aos seus sonhos
           </p>
         </div>
-        <div className={``}>
+        <div className={`FotoDeDarlan.jpg`}>
           <Image
-            src={"/img/avatar.png"}
+            src={"/img/"}
             alt="image"
             width={400}
             height={400}
-            className={`w-[22rem] mx-auto mt-1 `}
+            className={`w-[22rem] mx-auto mt-1 rounded-full`}
             style={{ objectFit: "contain" }}
           />
         </div>
