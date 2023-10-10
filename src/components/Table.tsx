@@ -33,7 +33,7 @@ const Table = ({
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: number | string
   ) {
-    router.push(`http://localhost:3000/editPost/${id}?id=${id}`);
+    router.push(`${baseURL}/editPost/${id}?id=${id}`);
   }
 
   function removePost(id: number | string) {
