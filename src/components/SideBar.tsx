@@ -20,7 +20,7 @@ const SideBar: React.FC = () => {
       <div className={``}>
         <div className={``}>
           <Image
-            src={"/img/blog-background.jpg"}
+            src={"/img/FotoDeDarlan.jpg"}
             alt="image"
             width={400}
             height={400}

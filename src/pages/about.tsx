@@ -14,7 +14,7 @@ export default function About() {
           >
             <div>
               <Image
-                src={"/img/avatar.png"}
+                src={"/img/FotoDeDarlan.jpg"}
                 width={400}
                 height={400}
                 alt="avatar"
