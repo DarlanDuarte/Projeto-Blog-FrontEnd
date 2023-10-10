@@ -20,7 +20,7 @@ const SideBar: React.FC = () => {
       <div className={``}>
         <div className={``}>
           <Image
-            src={"/img/avatar.png"}
+            src={"/img/blog-background.jpg"}
             alt="image"
             width={400}
             height={400}
@@ -54,7 +54,7 @@ const SideBar: React.FC = () => {
         </div>
         <div className={`FotoDeDarlan.jpg`}>
           <Image
-            src={"/img/"}
+            src={"/img/FotoDeDarlan.jpg"}
             alt="image"
             width={400}
             height={400}
