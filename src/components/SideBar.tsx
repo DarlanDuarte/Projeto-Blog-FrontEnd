@@ -24,7 +24,7 @@ const SideBar: React.FC = () => {
             alt="image"
             width={400}
             height={400}
-            className={`w-[22rem] mx-auto mt-1 rounded-full `}
+            className={`w-[22rem] mx-auto mt-1 `}
             style={{ objectFit: "contain" }}
           />
         </div>
@@ -58,7 +58,7 @@ const SideBar: React.FC = () => {
             alt="image"
             width={400}
             height={400}
-            className={`w-[22rem] mx-auto mt-1 rounded-full`}
+            className={`w-[16rem] mx-auto mt-4 mb-4 rounded-full`}
             style={{ objectFit: "contain" }}
           />
         </div>
@@ -105,7 +105,10 @@ const SideBar: React.FC = () => {
               sm:m-5
             `}
             >
-              <Link href={"/"}>
+              <Link
+                href={"https://portifolio-darlanduarte.netlify.app/"}
+                target="_blank"
+              >
                 <BsPersonWorkspace size={32} color={"#93a7a6"} />
               </Link>
             </li>
@@ -135,7 +138,12 @@ const SideBar: React.FC = () => {
             
             `}
             >
-              <BsLinkedin size={32} color={"#93a7a6"} />
+              <Link
+                href={"https://www.linkedin.com/in/darlan-melo-492927288/"}
+                target={`_blank`}
+              >
+                <BsLinkedin size={32} color={"#93a7a6"} />
+              </Link>
             </li>
             <li
               className={`mx-5
@@ -147,7 +155,14 @@ const SideBar: React.FC = () => {
             
             `}
             >
-              <BsWhatsapp size={32} color={"#93a7a6"} />
+              <Link
+                href={
+                  "https://wa.me/5585989304007?text=Ol%C3%A1%2C+tudo+bem%21+Meu+nome+%C3%A9+"
+                }
+                target="_blank"
+              >
+                <BsWhatsapp size={32} color={"#93a7a6"} />
+              </Link>
             </li>
           </ul>
         </div>

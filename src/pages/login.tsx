@@ -6,6 +6,7 @@ import { IDataCreateUser, IDataLogin } from "@/interfaces/interface";
 import { useRouter } from "next/router";
 import { CreateContext } from "@/context/NovoContext";
 import { motion } from "framer-motion";
+import LoadingNewPost from "@/components/Loading/LoadingNewPost";
 
 const Login = () => {
   const { baseURL } = useContext(CreateContext);
@@ -16,6 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msgError, setMsgError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   function ExibirError(msg: string, time = 5000) {
     setMsgError(msg);
@@ -50,6 +52,7 @@ const Login = () => {
     }
 
     try {
+      setLoading(true);
       const response = await fetch(`${baseURL}/user`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -71,6 +74,7 @@ const Login = () => {
       setName("");
       setEmail("");
       setPassword("");
+      setLoading(false);
       setLogin("login");
     } catch (e: any) {
       console.log(`Ocorreu um erro na tentativa de Cadastro`, e.message);
@@ -80,6 +84,7 @@ const Login = () => {
   async function Login(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await fetch(`${baseURL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -100,6 +105,7 @@ const Login = () => {
 
       setEmail("");
       setPassword("");
+      setLoading(false);
       router.push("/");
     } catch (e: any) {
       console.log(`Erro na tentativa de Login`, e.message);
@@ -136,7 +142,7 @@ const Login = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
             transition={{ duration: 1 }}
-            className={`absolute mt-[28%] w-96 h-[44rem] -left-48 bg-white shadow-4xl
+            className={`absolute mt-[20%] w-96 h-[44rem] -left-48 bg-white shadow-4xl
             
             sm:w-[24rem] sm:mt-0  sm:static
             `}
@@ -183,7 +189,11 @@ const Login = () => {
                 hover:bg-green-500 duration-700
               `}
               >
-                Login
+                {loading ? (
+                  <LoadingNewPost largura={"10px"} tamanho={"10px"} />
+                ) : (
+                  `Login`
+                )}
               </button>
             </form>
             <div className={`mt-32 w-full border-[1px]`}></div>
@@ -193,7 +203,11 @@ const Login = () => {
               hover:bg-black hover:text-white duration-700 hover:border-black
             `}
             >
-              Cadastrar
+              {loading ? (
+                <LoadingNewPost largura={"10px"} tamanho={"10px"} />
+              ) : (
+                `Cadastrar`
+              )}
             </button>
           </motion.div>
         </div>

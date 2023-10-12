@@ -15,10 +15,10 @@ export default function About() {
             <div>
               <Image
                 src={"/img/FotoDeDarlan.jpg"}
-                width={400}
-                height={400}
+                width={300}
+                height={300}
                 alt="avatar"
-                className={`rounded-full`}
+                className={`mx-auto mt-8 mb-4 rounded-full`}
               />
             </div>
             <h3 className={`text-white text-3xl text-center font-semibold`}>
